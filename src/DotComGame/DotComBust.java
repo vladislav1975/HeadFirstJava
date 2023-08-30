@@ -8,7 +8,7 @@ public class DotComBust {
     private int numOfGuesses;
     private final int BOARD_SIZE = 7;
     private final String ab = "abcdefghij";
-    private final int[] shipList = {3, 3, 3};
+    private final int[] shipList = {2};
     private final ArrayList<DotCom> ships = new ArrayList<>();
     private final Random rnd = new Random();
 
@@ -168,7 +168,7 @@ public class DotComBust {
     }
 
     private void finishGame(){
-        System.out.println("Guesses:" + numOfGuesses);
+        System.out.println("Game Over!\nGuesses:" + numOfGuesses);
     }
 
     public static void main(String[] args) {
