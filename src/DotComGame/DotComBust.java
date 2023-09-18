@@ -135,7 +135,7 @@ public class DotComBust {
         }
     }
 
-    private void  setUpGame(){
+    void  setUpGame(){
         // Create ships
         boolean isPlaced = false;
         while (!isPlaced){
@@ -145,7 +145,7 @@ public class DotComBust {
         printBoard();
     }
 
-    private void startPlaying(){
+    void startPlaying(){
         while (!ships.isEmpty()){
             String userGuess = helper.getUserInput("Your turn: ");
             checkUserGuess(userGuess);
