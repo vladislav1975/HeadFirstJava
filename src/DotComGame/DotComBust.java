@@ -6,13 +6,22 @@ import java.util.Random;
 public class DotComBust {
     private GameHelper helper = new GameHelper();
     private int numOfGuesses;
+
+    public DotComBust() {
+        setUpGame();
+    }
+
+    public int getBOARD_SIZE() {
+        return BOARD_SIZE;
+    }
+
     private final int BOARD_SIZE = 7;
-    private final String ab = "abcdefghij";
+    final String ab = "abcdefghij";
     private final int[] shipList = {2};
-    private final ArrayList<DotCom> ships = new ArrayList<>();
+    final ArrayList<DotCom> ships = new ArrayList<>();
     private final Random rnd = new Random();
 
-    private String cellToString(int y, int x){
+    String cellToString(int y, int x){
         return ab.charAt(y) + Integer.toString(x);
     }
     private int[] stringToCell(String loc){
@@ -135,7 +144,7 @@ public class DotComBust {
         }
     }
 
-    void  setUpGame(){
+    private void  setUpGame(){
         // Create ships
         boolean isPlaced = false;
         while (!isPlaced){
@@ -145,7 +154,7 @@ public class DotComBust {
         printBoard();
     }
 
-    void startPlaying(){
+    private void startPlaying(){
         while (!ships.isEmpty()){
             String userGuess = helper.getUserInput("Your turn: ");
             checkUserGuess(userGuess);
@@ -173,7 +182,7 @@ public class DotComBust {
 
     public static void main(String[] args) {
         DotComBust game = new DotComBust();
-        game.setUpGame();
+        //game.setUpGame();
         game.startPlaying();
     }
 }
