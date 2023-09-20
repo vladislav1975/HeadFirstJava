@@ -6,6 +6,7 @@ import java.util.Random;
 public class DotComBust {
     private GameHelper helper = new GameHelper();
     private int numOfGuesses;
+    private GameGui gameGui;
 
     public DotComBust() {
         setUpGame();
@@ -151,6 +152,7 @@ public class DotComBust {
             ships.clear();
             isPlaced = initShips();
         }
+        this.gameGui = new GameGui(this);
         printBoard();
     }
 
@@ -174,6 +176,19 @@ public class DotComBust {
             }
         }
         System.out.println(result);
+        boardRefresh(userGuess, result);
+    }
+
+    private void boardRefresh(String userGuess, String result) {
+        // get cell value
+        int row = stringToCell(userGuess)[0];
+        int column = stringToCell(userGuess)[1]+1;
+        String value = String.valueOf(gameGui.jtBoard.getModel().getValueAt(row, column));
+        //new value
+        if (result.equals("Fail") && value == "null") value = ".";
+        else if (!result.equals("Fail")) value = "X";
+        //set value
+        gameGui.jtBoard.getModel().setValueAt(value, row, column);
     }
 
     private void finishGame(){
