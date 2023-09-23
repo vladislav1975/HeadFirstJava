@@ -30,7 +30,7 @@
               <text value="Status"/>
             </properties>
           </component>
-          <component id="41b4b" class="javax.swing.JLabel">
+          <component id="41b4b" class="javax.swing.JLabel" binding="lblStatus">
             <constraints border-constraint="Center"/>
             <properties>
               <horizontalAlignment value="0"/>

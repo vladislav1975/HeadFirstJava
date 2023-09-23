@@ -4,14 +4,19 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GameGui extends JFrame{
     private JPanel mainPanel;
     private JButton exitGameButton;
     private JList list1;
-    private JTextField turnTextField;
+    JTextField turnTextField;
     private JButton okButton;
     JTable jtBoard;
+    JLabel lblStatus;
+    private JFrame jFrame;
+    boolean isInputReady = false;
 
     public GameGui(DotComBust game){
         DefaultTableModel tm = new DefaultTableModel();
@@ -28,7 +33,7 @@ public class GameGui extends JFrame{
         }
         DefaultTableCellRenderer renderer = (DefaultTableCellRenderer)jtBoard.getDefaultRenderer(Object.class);
         renderer.setHorizontalAlignment(SwingConstants.CENTER);
-        jtBoard.setRowHeight(37);
+        jtBoard.setRowHeight((jtBoard.getPreferredScrollableViewportSize().height - 19)/ game.getBOARD_SIZE());
         jtBoard.setModel(tm);
         jtBoard.setPreferredScrollableViewportSize(new Dimension(200,200));
         setContentPane(mainPanel);
@@ -39,6 +44,24 @@ public class GameGui extends JFrame{
         setIconImage(img.getImage());
         pack();
         setVisible(true);
+        jFrame = this;
+
+        exitGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int result = JOptionPane.showConfirmDialog(jFrame, "Exit Game?", "Exit",
+                        JOptionPane.YES_NO_OPTION);
+                if (result == 0) System.exit(0);
+            }
+        });
+        okButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(turnTextField.getText());
+                isInputReady = true;
+                System.out.println(isInputReady);
+            }
+        });
     }
 
 }

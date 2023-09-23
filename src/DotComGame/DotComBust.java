@@ -6,7 +6,7 @@ import java.util.Random;
 public class DotComBust {
     private GameHelper helper = new GameHelper();
     private int numOfGuesses;
-    private GameGui gameGui;
+    GameGui gameGui;
 
     public DotComBust() {
         setUpGame();
@@ -16,7 +16,7 @@ public class DotComBust {
         return BOARD_SIZE;
     }
 
-    private final int BOARD_SIZE = 7;
+    private final int BOARD_SIZE = 10;
     final String ab = "abcdefghij";
     private final int[] shipList = {2};
     final ArrayList<DotCom> ships = new ArrayList<>();
@@ -158,8 +158,10 @@ public class DotComBust {
 
     private void startPlaying(){
         while (!ships.isEmpty()){
-            String userGuess = helper.getUserInput("Your turn: ");
+            //String userGuess = helper.getUserInput();
+            String userGuess = helper.getUserInput(this);
             checkUserGuess(userGuess);
+
         }
         finishGame();
     }
