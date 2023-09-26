@@ -22,7 +22,6 @@ public class GameHelper {
     public String getUserInput(DotComBust game) {
         String inputLine = null;
         boolean isReady = game.gameGui.isInputReady;
-        System.out.print("Your turn: ");
         while (true){
             game.gameGui.revalidate();
             if (game.gameGui.isInputReady) {
@@ -37,7 +36,6 @@ public class GameHelper {
                 byte column = (byte) Character.getNumericValue(inputLine.charAt(1));
                 if ((row > 9 && row < 20) && (column >= 0 && column < 10)) return inputLine;
             }
-            System.out.println("Invalid input, try another");
             game.gameGui.lblStatus.setText("Invalid input, try another");
         }
     }

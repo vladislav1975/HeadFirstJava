@@ -1,11 +1,14 @@
 package DotComGame;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class DotComBust {
     private GameHelper helper = new GameHelper();
     private int numOfGuesses;
+    static boolean showBoard = false;
     GameGui gameGui;
 
     public DotComBust() {
@@ -18,7 +21,7 @@ public class DotComBust {
 
     private final int BOARD_SIZE = 10;
     final String ab = "abcdefghij";
-    private final int[] shipList = {2};
+    private final int[] shipList = {4, 3 ,3, 2, 2, 2, 1, 1, 1, 1};
     final ArrayList<DotCom> ships = new ArrayList<>();
     private final Random rnd = new Random();
 
@@ -152,8 +155,10 @@ public class DotComBust {
             ships.clear();
             isPlaced = initShips();
         }
+
+        //Start GUI
         this.gameGui = new GameGui(this);
-        printBoard();
+        if (showBoard) printBoard();
     }
 
     private void startPlaying(){
@@ -161,7 +166,6 @@ public class DotComBust {
             //String userGuess = helper.getUserInput();
             String userGuess = helper.getUserInput(this);
             checkUserGuess(userGuess);
-
         }
         finishGame();
     }
@@ -177,7 +181,6 @@ public class DotComBust {
                 break;
             }
         }
-        System.out.println(result);
         boardRefresh(userGuess, result);
     }
 
@@ -191,15 +194,27 @@ public class DotComBust {
         else if (!result.equals("Fail")) value = "X";
         //set value
         gameGui.jtBoard.getModel().setValueAt(value, row, column);
+        gameGui.lm.add(0, userGuess + " -- " + result);
     }
 
     private void finishGame(){
         System.out.println("Game Over!\nGuesses:" + numOfGuesses);
+        String message = "All ships were sunk.\nNumber of shots: " + numOfGuesses + "\nStart the game again?";
+        int res = JOptionPane.showConfirmDialog(gameGui, message, "Game over", JOptionPane.YES_NO_OPTION);
+        if (res == 0) {
+            gameGui.dispose();
+            theGame();
+        }
+        else System.exit(0);
     }
 
-    public static void main(String[] args) {
+    static void theGame(){
         DotComBust game = new DotComBust();
-        //game.setUpGame();
         game.startPlaying();
+    }
+    public static void main(String[] args) {
+        if (args.length > 0 && args[0].equals("--showBoard")) showBoard = true;
+        else System.out.println("use [--showBoard] option to view ships");
+        theGame();
     }
 }

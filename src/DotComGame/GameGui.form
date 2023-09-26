@@ -11,12 +11,6 @@
       <size top="10" left="10" bottom="10" right="10"/>
     </border>
     <children>
-      <component id="3fcc1" class="javax.swing.JLabel">
-        <constraints border-constraint="North"/>
-        <properties>
-          <text value="Caption"/>
-        </properties>
-      </component>
       <grid id="89af1" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="South"/>
         <properties/>
@@ -27,14 +21,14 @@
           <component id="986cb" class="javax.swing.JLabel">
             <constraints border-constraint="West"/>
             <properties>
-              <text value="Status"/>
+              <text value="User input"/>
             </properties>
           </component>
           <component id="41b4b" class="javax.swing.JLabel" binding="lblStatus">
             <constraints border-constraint="Center"/>
             <properties>
               <horizontalAlignment value="0"/>
-              <text value="Bottom text"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="a80cb" class="javax.swing.JButton" binding="exitGameButton" default-binding="true">
@@ -101,14 +95,15 @@
                   <component id="da681" class="javax.swing.JLabel">
                     <constraints border-constraint="West"/>
                     <properties>
-                      <text value="turn"/>
+                      <text value="guess:  "/>
                     </properties>
                   </component>
                   <component id="884bf" class="javax.swing.JTextField" binding="turnTextField" default-binding="true">
                     <constraints border-constraint="Center"/>
                     <properties>
+                      <font style="1"/>
                       <margin top="2" left="6" bottom="2" right="6"/>
-                      <text value="turn"/>
+                      <text value=""/>
                     </properties>
                   </component>
                   <component id="22329" class="javax.swing.JButton" binding="okButton" default-binding="true">
@@ -119,23 +114,36 @@
                   </component>
                 </children>
               </grid>
-              <scrollpane id="46d60">
+              <grid id="af15f" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints border-constraint="Center"/>
-                <properties>
-                  <minimumSize width="14" height="100"/>
-                  <preferredSize width="250" height="270"/>
-                </properties>
-                <border type="none"/>
+                <properties/>
+                <border type="empty">
+                  <size top="5" left="0" bottom="5" right="5"/>
+                </border>
                 <children>
-                  <component id="bb262" class="javax.swing.JList" binding="list1" default-binding="true">
-                    <constraints/>
+                  <scrollpane id="46d60">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
                     <properties>
-                      <minimumSize width="50" height="200"/>
-                      <preferredSize width="0" height="200"/>
+                      <minimumSize width="-1" height="-1"/>
+                      <preferredSize width="250" height="270"/>
+                      <verticalScrollBarPolicy value="20"/>
                     </properties>
-                  </component>
+                    <border type="line">
+                      <size top="5" left="0" bottom="5" right="5"/>
+                      <color color="-16777216"/>
+                    </border>
+                    <children>
+                      <component id="bb262" class="javax.swing.JList" binding="lstGuesses">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
                 </children>
-              </scrollpane>
+              </grid>
             </children>
           </grid>
         </children>
