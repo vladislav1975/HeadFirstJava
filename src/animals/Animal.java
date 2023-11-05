@@ -1,14 +1,22 @@
 package animals;
 
-class Animal{
-    void  who(){
-        System.out.println("animal");
-    }
+abstract class Animal{
+    abstract void  who();
+
     public static void main(String[] args) {
-        Animal animal = new Animal();
-        animal.who();
+
+        Animal a = new Animal() {
+            @Override
+            void who() {
+                System.out.println("Overrided animal");
+            }
+        };
         Animal dog = new Dog();
+        Animal cat = new Cat();
+        a.who();
         dog.who();
+        cat.who();
+
     }
 }
 
@@ -19,5 +27,12 @@ class Dog extends Animal{
     }
     void name(){
         System.out.println("bob");
+    }
+}
+
+class Cat extends Animal{
+    @Override
+    void who() {
+        System.out.println("Cat");
     }
 }
